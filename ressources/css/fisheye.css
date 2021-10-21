@@ -1,0 +1,98 @@
+/** Variables **/
+:root {
+  --primaire: #901c1c;
+  --primaire-alternatif: #d3573c;
+  --secondaire: #db8876;
+  --secondaire-alternatif-1: #525252;
+  --secondaire-alternatif-1-2: #fafafa;
+  --secondaire-alternatif-2: #901c1c;
+}
+
+/** Contenu **/
+* {
+  font-family: "DM Sans", sans-serif;
+}
+
+/** Header **/
+header {
+  display: inline-flex;
+  width: 100%;
+}
+
+.partie-header {
+  flex: 1 0;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+}
+.lien-filtre {
+  border: 0.5px solid #c4c4c4;
+  border-radius: 10px;
+  color: var(--primaire);
+  margin: auto 5px;
+  padding: 3px 7px;
+  text-decoration: none;
+}
+
+.titre-header {
+  color: var(--primaire);
+  display: flex;
+  flex-direction: column;
+  font-size: 36px;
+  justify-content: center;
+  width: -webkit-fill-available;
+}
+
+/** Main **/
+.retour-contenu {
+  background-color: var(--secondaire);
+  border-radius: 5px;
+  color: #000000;
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  height: fit-content;
+  margin: 10px auto;
+  padding: 5px 10px;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.liste-photographes {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.photographe {
+  flex: 1 0 33%;
+  margin-bottom: 32px;
+}
+.lien-photographe {
+  text-decoration: none;
+}
+.img-photographe {
+  border-radius: 50%;
+  height: 200px;
+  object-fit: cover;
+  width: 200px;
+}
+.nom-photographe {
+  color: var(--primaire-alternatif);
+  font-size: 36px;
+  font-weight: 400;
+  margin: 0 auto;
+}
+.lieu-photographe {
+  color: var(--primaire);
+  font-size: 22px;
+}
+.description-photographe {
+  font-size: 14px;
+  margin-top: 0;
+}
+.tarif-photographe {
+  color: #757575;
+  font-size: 12px;
+}
