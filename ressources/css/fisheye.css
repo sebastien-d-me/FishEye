@@ -90,7 +90,7 @@ nav {
   width: fit-content;
 }
 
-.liste-photographes {
+#liste-photographes {
   display: flex;
   flex-wrap: wrap;
   text-align: center;
