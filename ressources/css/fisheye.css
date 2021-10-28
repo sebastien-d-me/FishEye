@@ -49,6 +49,8 @@ nav {
   border: 0.5px solid #c4c4c4;
   border-radius: 10px;
   color: var(--primaire);
+  font-size: 14px;
+  font-weight: 500;
   margin: auto 5px;
   padding: 3px 7px;
   text-decoration: none;
@@ -127,8 +129,76 @@ nav {
   color: #757575;
   font-size: 12px;
 }
-.liste-filtres-photographe > .lien-filtre {
-  font-size: 14px;
+
+/** Page photographe **/
+#profil-infos-photographe {
+  background-color: var(--secondaire-alternatif-1-2);
+  margin: 0 100px;
+  padding: 50px;
+  position: relative;
+}
+#profil-photo-photographe {
+  height: 180px;
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 180px;
+}
+#profil-nom-contact-photographe {
+  display: inline-flex;
+}
+.btn-contact {
+  background-color: var(--primaire);
+  border: transparent;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 20px;
+  margin-left: 200px;
+  padding: 15px 10px;
+}
+.btn-contact:hover {
+  background-color: var(--secondaire);
+  color: #000000;
+  cursor: pointer;
+  font-weight: 700;
+}
+#profil-description-photographe {
+  margin-top: 10px;
+}
+#trier {
+  margin: 25px 100px;
+}
+#trier > select {
+  background-color: var(--primaire);
+  border: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #ffffff;
+  font-size: 18px;
+  height: 60px;
+  padding: 0 5px;
+  width: 150px;
+}
+#trier > select > option {
+  border-top: 1px solid #ffffff;
+}
+#likes-tarif {
+  background-color: var(--secondaire);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  bottom: 0;
+  font-size: 18px;
+  padding: 10px 15px;
+  position: fixed;
+  right: 35px;
+  width: fit-content;
+}
+#profil-likes-photographe {
+  margin-right: 15px;
+}
+#profil-tarif-photographe {
+  margin-left: 15px;
 }
 
 /** Responsive **/
