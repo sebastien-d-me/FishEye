@@ -1,4 +1,4 @@
-/** Récupère le photographe en question **/
+/** Récupère les infos du photographe en question **/
 const InfosPhotographe = function (name, portrait, city, country, tagline, tags) {
     let infosPhotographe = {};
     
@@ -32,6 +32,70 @@ const InfosPhotographe = function (name, portrait, city, country, tagline, tags)
     return infosPhotographe;
 }
 
+/** Affiche les photos **/
+const AffichePhotos = function (id, title, nom, typePhoto, nomPhoto, tags, likes, date, price) {
+    let affichePhotos = {};
+    
+    affichePhotos.id = id;
+    affichePhotos.title = title;
+    affichePhotos.nom = nom;
+    affichePhotos.typePhoto = typePhoto;
+    affichePhotos.nomPhoto = nomPhoto;
+    affichePhotos.tags = tags;
+    affichePhotos.likes = likes;
+    affichePhotos.date = date;
+    affichePhotos.price = price;
+    
+    if(typePhoto == "image") {
+        affichePhotos.construct = function () {
+            return `
+                <div class="photo">
+                    <img class="img-photo" src="ressources/img/${nom}/${nomPhoto}">
+                    <div>
+                        <span class="titre-photo">${title}</span>
+                        <span class="like">
+                            ${likes} 
+                            <span class="like-coeur">♥</span>
+                        </span>
+                    </div>
+                </div>
+            `;
+        };
+    } else {
+        affichePhotos.construct = function () {
+            return `
+                <div class="photo">
+                    <video controls class="img-photo">
+                        <source src="ressources/img/${nom}/${nomPhoto}" type="video/mp4">
+                    </video>
+                    <div>
+                        <span class="titre-photo">${title}</span>
+                        <span class="like">
+                            ${likes} 
+                            <span class="like-coeur">♥</span>
+                        </span>
+                    </div>
+                </div>
+            `;
+        };
+    }
+    return affichePhotos;
+}
+
+/** Récupère le nombre de likes total et du tarif **/
+const LikeTarif = function (price) {
+    let likeTarif = {};
+    
+    likeTarif.price = price;
+    
+    likeTarif.construct = function () {
+        return `
+            <span id="profil-likes-photographe">297 081 ♥</span>
+            <span id="profil-tarif-photographe">${price}€ / jour</span>
+        `;
+    };
+    return likeTarif;
+}
 
 /** Gestion du JSON **/
 fetch('ressources/js/FishEyeData.json').then(response => {
@@ -45,9 +109,38 @@ fetch('ressources/js/FishEyeData.json').then(response => {
         }
     }
     let photographe = data["photographers"][numPhotographe];
+    /** Infos du photographe **/
     let infosPhotographeDOM = InfosPhotographe(photographe.name, photographe.portrait, photographe.city, photographe.country, photographe.tagline, photographe.tags);
     infosPhotographeDOM = infosPhotographeDOM.construct();
     document.getElementById('profil-infos-photographe').insertAdjacentHTML('beforeend', infosPhotographeDOM);
-    /*document.getElementById('liste-photos').insertAdjacentHTML('beforeend', liste-photos);
-    document.getElementById('likes-tarif').insertAdjacentHTML('beforeend', likes-tarif);*/
+    /** Récupère les photos du photographe **/
+    var nomPhotographe = "";
+    switch(idURL) {
+        case "930":
+            nomPhotographe = "Ellie_Rose";
+            break;
+        default:
+            break;
+    }
+    var typePhoto = "";
+    var nomPhoto = "";
+    for(var nbPhoto = 0; nbPhoto < data["media"].length; nbPhoto++) {
+        if(data["media"][nbPhoto]["photographerId"] == idURL) {
+            let photos = data["media"][nbPhoto];
+            if(photos["image"] === undefined) {
+                typePhoto = "video";
+                nomPhoto = photos["video"];
+            } else {
+                typePhoto = "image";
+                nomPhoto = photos["image"];
+            }
+            let photosDOM = AffichePhotos(photos["id"], photos["title"], nomPhotographe, typePhoto, nomPhoto, photos["tags"], photos["likes"], photos["date"], photos["price"]);
+            photosDOM = photosDOM.construct();
+            document.getElementById('profil-liste-photos').insertAdjacentHTML('beforeend', photosDOM);
+        }
+    }
+    /** Likes et tarif du photographe **/
+    let likesTarifDOM = LikeTarif(photographe.price);
+    likesTarifDOM = likesTarifDOM.construct();
+    document.getElementById('profil-likes-tarif').insertAdjacentHTML('beforeend', likesTarifDOM);
 }).catch(err => {});

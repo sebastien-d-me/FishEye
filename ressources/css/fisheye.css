@@ -183,7 +183,37 @@ nav {
 #trier > select > option {
   border-top: 1px solid #ffffff;
 }
-#likes-tarif {
+#profil-liste-photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 50px;
+  margin: 0 100px;
+}
+.photo {
+  flex: 1 0 30%;
+}
+.img-photo {
+  border-radius: 5px;
+  display: block;
+  height: 350px;
+  margin: auto;
+  object-fit: cover;
+  width: 100%;
+}
+.titre-photo {
+  color: var(--primaire);
+  font-size: 24px;
+}
+.like {
+  color: var(--primaire);
+  float: right;
+  font-size: 24px;
+}
+.like-coeur {
+  color: var(--primaire);
+  font-size: 30px;
+}
+#profil-likes-tarif {
   background-color: var(--secondaire);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
