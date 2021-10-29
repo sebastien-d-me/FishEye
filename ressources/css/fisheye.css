@@ -269,6 +269,53 @@ nav {
   .photographe {
     flex: 1 0 100%;
   }
+  /** Page photographe **/
+  #profil-infos-photographe {
+    background-color: unset;
+    margin: unset;
+    padding: 25px;
+  }
+  .nom-photographe {
+    font-size: 25px;
+  }
+  #profil-photo-photographe {
+    height: 125px;
+    right: 25px;
+    width: 125px;
+  }
+  .btn-contact {
+    bottom: 25px;
+    left: 50%;
+    margin-left: unset;
+    padding: 15px 25px;
+    position: fixed;
+    transform: translateX(-50%);
+    width: fit-content;
+    z-index: 1;
+  }
+  #trier {
+    display: none;
+  }
+  #profil-liste-photos {
+    flex-direction: column;
+    gap: 0px 50px;
+    margin: 0 25px;
+  }
+  .photo {
+    flex: 1 0 100%;
+    margin: 5px 0;
+  }
+  .img-photo {
+    height: 200px;
+  }
+  .block-photo {
+    margin-top: 10px;
+  }
+  .titre-photo,
+  .like,
+  .like-coeur {
+    font-size: 20px;
+  }
 }
 
 @media screen and (max-width: 374px) {

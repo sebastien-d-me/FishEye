@@ -68,7 +68,7 @@ const AffichePhotos = function (id, title, nom, typePhoto, nomPhoto, tags, likes
                     <video controls class="img-photo">
                         <source src="ressources/img/${nom}/${nomPhoto}" type="video/mp4">
                     </video>
-                    <div>
+                    <div class="block-photo">
                         <span class="titre-photo">${title}</span>
                         <span class="like">
                             ${likes} 
