@@ -83,14 +83,15 @@ const AffichePhotos = function (id, title, nom, typePhoto, nomPhoto, tags, likes
 }
 
 /** Récupère le nombre de likes total et du tarif **/
-const LikeTarif = function (price) {
+const LikeTarif = function (likeTotal, price) {
     let likeTarif = {};
     
+    likeTarif.likeTotal = likeTotal;
     likeTarif.price = price;
     
     likeTarif.construct = function () {
         return `
-            <span id="profil-likes-photographe">297 081 ♥</span>
+            <span id="profil-likes-photographe">${likeTotal} ♥</span>
             <span id="profil-tarif-photographe">${price}€ / jour</span>
         `;
     };
@@ -109,6 +110,7 @@ fetch('ressources/js/FishEyeData.json').then(response => {
         }
     }
     let photographe = data["photographers"][numPhotographe];
+    var likeTotal = 0;
     /** Infos du photographe **/
     let infosPhotographeDOM = InfosPhotographe(photographe.name, photographe.portrait, photographe.city, photographe.country, photographe.tagline, photographe.tags);
     infosPhotographeDOM = infosPhotographeDOM.construct();
@@ -116,8 +118,23 @@ fetch('ressources/js/FishEyeData.json').then(response => {
     /** Récupère les photos du photographe **/
     var nomPhotographe = "";
     switch(idURL) {
+        case "243":
+            nomPhotographe = "Mimi";
+            break;
         case "930":
             nomPhotographe = "Ellie_Rose";
+            break;    
+        case "82":
+            nomPhotographe = "Tracy";
+            break;
+        case "527":
+            nomPhotographe = "Nabeel";
+            break;
+        case "925":
+            nomPhotographe = "Rhode";
+            break;    
+        case "195":
+            nomPhotographe = "Marcel";
             break;
         default:
             break;
@@ -127,6 +144,7 @@ fetch('ressources/js/FishEyeData.json').then(response => {
     for(var nbPhoto = 0; nbPhoto < data["media"].length; nbPhoto++) {
         if(data["media"][nbPhoto]["photographerId"] == idURL) {
             let photos = data["media"][nbPhoto];
+            likeTotal = likeTotal + photos["likes"];
             if(photos["image"] === undefined) {
                 typePhoto = "video";
                 nomPhoto = photos["video"];
@@ -140,7 +158,7 @@ fetch('ressources/js/FishEyeData.json').then(response => {
         }
     }
     /** Likes et tarif du photographe **/
-    let likesTarifDOM = LikeTarif(photographe.price);
+    let likesTarifDOM = LikeTarif(likeTotal, photographe.price);
     likesTarifDOM = likesTarifDOM.construct();
     document.getElementById('profil-likes-tarif').insertAdjacentHTML('beforeend', likesTarifDOM);
 }).catch(err => {});
