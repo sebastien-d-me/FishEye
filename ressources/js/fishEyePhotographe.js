@@ -33,9 +33,10 @@ const InfosPhotographe = function (name, portrait, city, country, tagline, tags)
 }
 
 /** Affiche les photos **/
-const AffichePhotos = function (id, title, nom, typePhoto, nomPhoto, tags, likes, date, price) {
+const AffichePhotos = function (indexPhoto, id, title, nom, typePhoto, nomPhoto, tags, likes, date, price) {
     let affichePhotos = {};
     
+    affichePhotos.indexPhoto = indexPhoto;
     affichePhotos.id = id;
     affichePhotos.title = title;
     affichePhotos.nom = nom;
@@ -49,8 +50,10 @@ const AffichePhotos = function (id, title, nom, typePhoto, nomPhoto, tags, likes
     if(typePhoto == "image") {
         affichePhotos.construct = function () {
             return `
-                <div class="photo">
-                    <img class="img-photo" src="ressources/img/${nom}/${nomPhoto}">
+                <div class="photo" id="${id}">
+                    <a href="#" onclick="ouvreLightbox('${indexPhoto}', 'ressources/img/${nom}/${nomPhoto}', '${title}')">
+                        <img class="img-photo" src="ressources/img/${nom}/${nomPhoto}">
+                    </a>
                     <div>
                         <span class="titre-photo">${title}</span>
                         <span class="like">
@@ -64,10 +67,12 @@ const AffichePhotos = function (id, title, nom, typePhoto, nomPhoto, tags, likes
     } else {
         affichePhotos.construct = function () {
             return `
-                <div class="photo">
-                    <video controls class="img-photo">
-                        <source src="ressources/img/${nom}/${nomPhoto}" type="video/mp4">
-                    </video>
+                <div class="photo" id="${id}">
+                    <a href="#" onclick="ouvreLightbox('${indexPhoto}', 'ressources/img/${nom}/${nomPhoto}', '${title}')">
+                        <video controls class="img-photo">
+                            <source src="ressources/img/${nom}/${nomPhoto}" type="video/mp4">
+                        </video>
+                    </a>
                     <div class="block-photo">
                         <span class="titre-photo">${title}</span>
                         <span class="like">
@@ -96,6 +101,30 @@ const LikeTarif = function (likeTotal, price) {
         `;
     };
     return likeTarif;
+}
+
+/** Lightbox **/
+function ouvreLightbox(index, photo, titre) {
+    document.getElementsByTagName("body")[0].style.overflow = "hidden";
+    document.getElementById("lightbox").style.display = "block";
+    document.getElementById("fleche-gauche").setAttribute("onclick", "flecheGauche("+index+")");
+    document.getElementById("fleche-droite").setAttribute("onclick", "flecheDroite("+index+")");
+    document.getElementById("photo-lightbox").setAttribute("src", photo);
+    document.getElementById("titre-photo-lightbox").innerHTML = titre;
+}
+
+function fermerLightbox() {
+    document.getElementsByTagName("body")[0].style.overflow = "unset";
+    document.getElementById("lightbox").style.display = "none";
+}
+
+function flecheGauche() {
+    
+}
+
+function flecheDroite(index) {
+    let prochaine = document.getElementsByClassName("photo")[index+1];
+    console.log(prochaine)
 }
 
 /** Gestion du JSON **/
@@ -141,6 +170,7 @@ fetch('ressources/js/FishEyeData.json').then(response => {
     }
     var typePhoto = "";
     var nomPhoto = "";
+    var indexPhoto = -1;
     for(var nbPhoto = 0; nbPhoto < data["media"].length; nbPhoto++) {
         if(data["media"][nbPhoto]["photographerId"] == idURL) {
             let photos = data["media"][nbPhoto];
@@ -152,7 +182,8 @@ fetch('ressources/js/FishEyeData.json').then(response => {
                 typePhoto = "image";
                 nomPhoto = photos["image"];
             }
-            let photosDOM = AffichePhotos(photos["id"], photos["title"], nomPhotographe, typePhoto, nomPhoto, photos["tags"], photos["likes"], photos["date"], photos["price"]);
+            indexPhoto = indexPhoto + 1;
+            let photosDOM = AffichePhotos(indexPhoto, photos["id"], photos["title"], nomPhotographe, typePhoto, nomPhoto, photos["tags"], photos["likes"], photos["date"], photos["price"]);
             photosDOM = photosDOM.construct();
             document.getElementById('profil-liste-photos').insertAdjacentHTML('beforeend', photosDOM);
         }

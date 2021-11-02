@@ -231,6 +231,68 @@ nav {
   margin-left: 15px;
 }
 
+/** Lightbox **/
+#lightbox {
+  background-color: white;
+  display: none;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.contenu-lightbox {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 100px);
+  justify-content: center;
+  margin: 50px 10%;
+  width: 80%;
+}
+.fermer {
+  color: var(--primaire);
+  cursor: pointer;
+  font-size: 100px;
+  position: absolute;
+  right: 100px;
+  top: 0;
+}
+.fermer:hover {
+  color: var(--secondaire);
+}
+.fermer::after {
+  content: "\00d7";
+}
+.fleche {
+  color: var(--primaire);
+  cursor: pointer;
+  font-size: 100px;
+  position: absolute;
+}
+.fleche:hover {
+  color: var(--secondaire);
+}
+#fleche-gauche {
+  left: 100px;
+}
+#fleche-droite {
+  right: 100px;
+}
+.photo-titre-lightbox {
+  margin: auto;
+  width: fit-content;
+}
+#photo-lightbox {
+  display: block;
+  margin: 0 auto;
+  max-height: 800px;
+  max-width: 800px;
+  object-fit: cover;
+}
+#titre-photo-lightbox {
+  display: block;
+  width: 100%;
+}
+
 /** Responsive **/
 @media screen and (max-width: 992px) {
   /** Header **/
