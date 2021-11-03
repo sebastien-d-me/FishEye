@@ -51,8 +51,8 @@ const AffichePhotos = function (indexPhoto, id, title, nom, typePhoto, nomPhoto,
         affichePhotos.construct = function () {
             return `
                 <div class="photo" id="${id}">
-                    <a href="#" onclick="ouvreLightbox('${indexPhoto}', 'ressources/img/${nom}/${nomPhoto}', '${title}')">
-                        <img class="img-photo" src="ressources/img/${nom}/${nomPhoto}">
+                    <a href="#" onclick="ouvreLightbox(${indexPhoto}, 'ressources/img/${nom}/${nomPhoto}', '${title}')">
+                        <img class="img-photo src-contenu" src="ressources/img/${nom}/${nomPhoto}">
                     </a>
                     <div>
                         <span class="titre-photo">${title}</span>
@@ -68,9 +68,9 @@ const AffichePhotos = function (indexPhoto, id, title, nom, typePhoto, nomPhoto,
         affichePhotos.construct = function () {
             return `
                 <div class="photo" id="${id}">
-                    <a href="#" onclick="ouvreLightbox('${indexPhoto}', 'ressources/img/${nom}/${nomPhoto}', '${title}')">
+                    <a href="#" onclick="ouvreLightbox(${indexPhoto}, 'ressources/img/${nom}/${nomPhoto}', '${title}')">
                         <video controls class="img-photo">
-                            <source src="ressources/img/${nom}/${nomPhoto}" type="video/mp4">
+                            <source class="src-contenu" src="ressources/img/${nom}/${nomPhoto}" type="video/mp4">
                         </video>
                     </a>
                     <div class="block-photo">
@@ -107,8 +107,21 @@ const LikeTarif = function (likeTotal, price) {
 function ouvreLightbox(index, photo, titre) {
     document.getElementsByTagName("body")[0].style.overflow = "hidden";
     document.getElementById("lightbox").style.display = "block";
-    document.getElementById("fleche-gauche").setAttribute("onclick", "flecheGauche("+index+")");
-    document.getElementById("fleche-droite").setAttribute("onclick", "flecheDroite("+index+")");
+    let totalPhoto = document.querySelectorAll(".photo").length;
+    console.log(totalPhoto)
+    console.log(index)
+    if(index == 1) {
+        document.getElementById("fleche-gauche").style.display = "none";
+    } else {
+        document.getElementById("fleche-gauche").style.display = "block";
+    }
+    document.getElementById("fleche-gauche").setAttribute("onclick", "flecheGauche("+(index-1)+")");
+    if(index == (totalPhoto - 2)) {
+        document.getElementById("fleche-droite").style.display = "none";
+    } else {
+        document.getElementById("fleche-droite").style.display = "block";
+    }
+    document.getElementById("fleche-droite").setAttribute("onclick", "flecheDroite("+(index+1)+")");
     document.getElementById("photo-lightbox").setAttribute("src", photo);
     document.getElementById("titre-photo-lightbox").innerHTML = titre;
 }
@@ -118,13 +131,19 @@ function fermerLightbox() {
     document.getElementById("lightbox").style.display = "none";
 }
 
-function flecheGauche() {
-    
+function flecheGauche(index) {
+    let photoAvant = document.getElementsByClassName("photo")[index-1].getElementsByClassName("src-contenu")[0].getAttribute("src");
+    let titreAvant = document.getElementsByClassName("photo")[index-1].getElementsByClassName("titre-photo")[0].innerHTML;
+    ouvreLightbox(index, photoAvant, titreAvant);
 }
 
 function flecheDroite(index) {
-    let prochaine = document.getElementsByClassName("photo")[index+1];
-    console.log(prochaine)
+    let totalPhoto = document.querySelectorAll(".photo").length;
+    if(index < (totalPhoto - 1)) {
+    let photoApres = document.getElementsByClassName("photo")[index+1].getElementsByClassName("src-contenu")[0].getAttribute("src");
+    let titreApres = document.getElementsByClassName("photo")[index+1].getElementsByClassName("titre-photo")[0].innerHTML;
+    ouvreLightbox(index, photoApres, titreApres);
+    }
 }
 
 /** Gestion du JSON **/
@@ -170,7 +189,7 @@ fetch('ressources/js/FishEyeData.json').then(response => {
     }
     var typePhoto = "";
     var nomPhoto = "";
-    var indexPhoto = -1;
+    var indexPhoto = 0;
     for(var nbPhoto = 0; nbPhoto < data["media"].length; nbPhoto++) {
         if(data["media"][nbPhoto]["photographerId"] == idURL) {
             let photos = data["media"][nbPhoto];
