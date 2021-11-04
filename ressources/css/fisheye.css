@@ -230,6 +230,49 @@ nav {
 #profil-tarif-photographe {
   margin-left: 15px;
 }
+/** Formulaire de contact **/
+#contact {
+  background-color: var(--secondaire);
+  display: none;
+  left: 50%;
+  padding: 10px 50px;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#fermer-contact {
+  color: #ffffff;
+  font-size: 60px;
+  right: 0;
+  top: 0;
+}
+.label-form {
+  color: #312e2e;
+  font-size: 18px;
+}
+.champ-form {
+  border-color: transparent;
+  display: block;
+  height: 30px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+textarea.champ-form {
+  height: 150px;
+  resize: none;
+}
+.btn-valider {
+  background-color: var(--primaire);
+  border-color: transparent;
+  border-radius: 5px;
+  color: #ffffff;
+  padding: 10px 20px;
+}
+.btn-valider:hover {
+  background-color: var(--primaire-alternatif);
+  color: var(--secondaire-alternatif);
+  cursor: pointer;
+}
 
 /** Lightbox **/
 #lightbox {

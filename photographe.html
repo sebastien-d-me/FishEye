@@ -43,6 +43,24 @@
                 </div>
             </div>
         </section>
+
+        <section id="contact">
+            <h1>Contactez-moi <span id="nom-contact"></span></h1>
+            <div class="contenu-contact">
+                <span class="fermer" id="fermer-contact" onclick="fermerContact()"></span>
+                <form method="get">
+                    <label class="label-form">Prénom</label>
+                    <input class="champ-form" id="form-prenom" type="text" required>
+                    <label class="label-form">Nom</label>
+                    <input class="champ-form" id="form-nom" type="text" required>
+                    <label class="label-form">Email</label>
+                    <input class="champ-form" id="form-email" type="text" required>
+                    <label class="label-form">Votre message</label>
+                    <textarea class="champ-form" id="form-message" required></textarea>
+                    <button class="btn-valider" type="button" onclick="validerContact()">Envoyer</button>
+                </form>
+            </div>
+        </section>
     </main>
     
     <script src="ressources/js/fishEyePhotographe.js"></script>

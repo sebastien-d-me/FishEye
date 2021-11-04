@@ -7,7 +7,6 @@ window.onscroll = function() {
     }
 }
 
-
 /** Liste des photographes **/
 const Photographe = function (id, name, portrait, city, country, tagline, price, tags) {
     let photographe = {};

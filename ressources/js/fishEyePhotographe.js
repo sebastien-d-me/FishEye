@@ -14,7 +14,7 @@ const InfosPhotographe = function (name, portrait, city, country, tagline, tags)
             <img class="img-photographe" id="profil-photo-photographe" src="ressources/img/Photographers_ID_Photos/${portrait}">
             <div id="profil-nom-contact-photographe">
                 <h1 class="nom-photographe">${name}</h1>
-                <button class="btn-contact">Contactez-moi</button>
+                <button class="btn-contact" onclick="contact('${name}')">Contactez-moi</button>
             </div>
             <div>
                 <span class="lieu-photographe">${city}, ${country}</span>
@@ -140,6 +140,25 @@ function systemeLike(id, type) {
     document.getElementById("profil-likes-photographe").innerHTML = nbLikeTotal;
 }
 
+/** Contact **/
+function contact(nom) {
+    document.getElementById("contact").style.display = "block";
+    document.getElementById("nom-contact").innerHTML = nom;
+}
+function fermerContact() {
+    document.getElementById("contact").style.display = "none";
+}
+function validerContact() {
+    var nom = document.getElementById("form-nom").value;
+    var prenom = document.getElementById("form-prenom").value;
+    var email = document.getElementById("form-email").value;
+    var message = document.getElementById("form-message").value;
+
+    console.log("NOM : "+nom+" PRENOM : "+prenom);
+    console.log("ADRESSE EMAIL : "+email);
+    console.log("MESSAGE : "+message);
+}
+
 /** Lightbox **/
 function ouvreLightbox(index, photo, titre) {
     document.getElementsByTagName("body")[0].style.overflow = "hidden";
@@ -168,6 +187,7 @@ function fermerLightbox() {
     document.getElementsByTagName("body")[0].style.overflow = "unset";
     document.getElementById("lightbox").style.display = "none";
 }
+
 /* Gère la flèche gauche */
 function flecheGauche(index) {
     let photoAvant = document.getElementsByClassName("photo")[index-1].getElementsByClassName("src-contenu")[0].getAttribute("src");
@@ -179,9 +199,9 @@ function flecheGauche(index) {
 function flecheDroite(index) {
     let totalPhoto = document.querySelectorAll(".photo").length;
     if(index < (totalPhoto - 1)) {
-    let photoApres = document.getElementsByClassName("photo")[index+1].getElementsByClassName("src-contenu")[0].getAttribute("src");
-    let titreApres = document.getElementsByClassName("photo")[index+1].getElementsByClassName("titre-photo")[0].innerHTML;
-    ouvreLightbox(index, photoApres, titreApres);
+        let photoApres = document.getElementsByClassName("photo")[index+1].getElementsByClassName("src-contenu")[0].getAttribute("src");
+        let titreApres = document.getElementsByClassName("photo")[index+1].getElementsByClassName("titre-photo")[0].innerHTML;
+        ouvreLightbox(index, photoApres, titreApres);
     }
 }
 
