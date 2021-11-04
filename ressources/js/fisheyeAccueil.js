@@ -23,7 +23,7 @@ const Photographe = function (id, name, portrait, city, country, tagline, price,
 
     photographe.construct = function () {
             return `
-                <article class="photographe">
+                <article class="photographe ${tags.map(tag =>`${tag}`).join(" ")}">
                     <a class="lien-photographe" href="photographe.html?id=${id}" aria-label="${name}">
                     <img alt="" class="img-photographe" src="ressources/img/Photographers_ID_Photos/${portrait}">
                         <h2 class="nom-photographe">${name}</h2>
@@ -44,6 +44,18 @@ const Photographe = function (id, name, portrait, city, country, tagline, price,
     };
     return photographe;
 };
+
+/** Gère les filtres **/
+function filtres(type) {
+    let photographe = document.querySelectorAll(".photographe");
+    photographe.forEach(function(photographe) {
+        photographe.style.display = "none";
+    });
+    let filtrePhotographe = document.querySelectorAll("."+type);
+    filtrePhotographe.forEach(function(filtrePhotographe) {
+        filtrePhotographe.style.display = "block";
+    });
+}
 
 /** Gestion du JSON **/
 fetch('ressources/js/FishEyeData.json').then(response => {

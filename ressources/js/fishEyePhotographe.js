@@ -56,9 +56,9 @@ const AffichePhotos = function (indexPhoto, id, title, nom, typePhoto, nomPhoto,
                     </a>
                     <div>
                         <span class="titre-photo">${title}</span>
-                        <span class="like">
-                            ${likes} 
-                            <span class="like-coeur">♥</span>
+                        <span class="like like-${id}">
+                            <span id="like-${id}">${likes}</span>
+                            <span class="like-coeur" onclick="like('${id}')">♥</span>
                         </span>
                     </div>
                 </div>
@@ -75,9 +75,9 @@ const AffichePhotos = function (indexPhoto, id, title, nom, typePhoto, nomPhoto,
                     </a>
                     <div class="block-photo">
                         <span class="titre-photo">${title}</span>
-                        <span class="like">
-                            ${likes} 
-                            <span class="like-coeur">♥</span>
+                        <span class="like like-${id}">
+                        <span id="like-${id}">${likes}</span> 
+                            <span class="like-coeur" onclick="like('${id}')">♥</span>
                         </span>
                     </div>
                 </div>
@@ -96,11 +96,42 @@ const LikeTarif = function (likeTotal, price) {
     
     likeTarif.construct = function () {
         return `
-            <span id="profil-likes-photographe">${likeTotal} ♥</span>
+            <span><span id="profil-likes-photographe">${likeTotal}</span> ♥</span>
             <span id="profil-tarif-photographe">${price}€ / jour</span>
         `;
     };
     return likeTarif;
+}
+
+/** Système de like **/
+function like(id) {
+    /* Incrémente le like */
+    let nbLike = document.getElementById("like-"+id).innerHTML;
+    nbLike = parseInt(nbLike);
+    nbLike = nbLike + 1;
+    /* Change dans les éléments */
+    document.getElementById("like-"+id).innerHTML = nbLike;
+    let nbLikeTotal = document.getElementById("profil-likes-photographe").innerHTML;
+    nbLikeTotal = parseInt(nbLikeTotal);
+    nbLikeTotal = nbLikeTotal + 1;
+    document.getElementById("profil-likes-photographe").innerHTML = nbLikeTotal;
+    /* Change la fonction */
+    document.getElementsByClassName("like-"+id)[0].getElementsByClassName("like-coeur")[0].setAttribute("onclick", "unlike('"+id+"')");
+}
+
+function unlike(id) {
+    /* Décrémente le like */
+    let nbLike = document.getElementById("like-"+id).innerHTML;
+    nbLike = parseInt(nbLike);
+    nbLike = nbLike - 1;
+    /* Change dans les éléments */
+    document.getElementById("like-"+id).innerHTML = nbLike;
+    let nbLikeTotal = document.getElementById("profil-likes-photographe").innerHTML;
+    nbLikeTotal = parseInt(nbLikeTotal);
+    nbLikeTotal = nbLikeTotal - 1;
+    document.getElementById("profil-likes-photographe").innerHTML = nbLikeTotal;
+    /* Change la fonction */
+    document.getElementsByClassName("like-"+id)[0].getElementsByClassName("like-coeur")[0].setAttribute("onclick", "like('"+id+"')");
 }
 
 /** Lightbox **/
@@ -108,8 +139,6 @@ function ouvreLightbox(index, photo, titre) {
     document.getElementsByTagName("body")[0].style.overflow = "hidden";
     document.getElementById("lightbox").style.display = "block";
     let totalPhoto = document.querySelectorAll(".photo").length;
-    console.log(totalPhoto)
-    console.log(index)
     if(index == 1) {
         document.getElementById("fleche-gauche").style.display = "none";
     } else {

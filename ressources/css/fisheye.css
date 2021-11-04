@@ -213,6 +213,9 @@ nav {
   color: var(--primaire);
   font-size: 30px;
 }
+.like-coeur:hover {
+  cursor: pointer;
+}
 #profil-likes-tarif {
   background-color: var(--secondaire);
   border-top-left-radius: 5px;
@@ -223,9 +226,6 @@ nav {
   position: fixed;
   right: 35px;
   width: fit-content;
-}
-#profil-likes-photographe {
-  margin-right: 15px;
 }
 #profil-tarif-photographe {
   margin-left: 15px;
