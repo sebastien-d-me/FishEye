@@ -58,7 +58,7 @@ const AffichePhotos = function (indexPhoto, id, title, nom, typePhoto, nomPhoto,
                         <span class="titre-photo">${title}</span>
                         <span class="like like-${id}">
                             <span id="like-${id}">${likes}</span>
-                            <span class="like-coeur" onclick="like('${id}')">♥</span>
+                            <span class="like-coeur" onclick="systemeLike('${id}', 'like')">♥</span>
                         </span>
                     </div>
                 </div>
@@ -77,7 +77,7 @@ const AffichePhotos = function (indexPhoto, id, title, nom, typePhoto, nomPhoto,
                         <span class="titre-photo">${title}</span>
                         <span class="like like-${id}">
                         <span id="like-${id}">${likes}</span> 
-                            <span class="like-coeur" onclick="like('${id}')">♥</span>
+                            <span class="like-coeur" onclick="systemeLike('${id}', 'like')">♥</span>
                         </span>
                     </div>
                 </div>
@@ -103,35 +103,41 @@ const LikeTarif = function (likeTotal, price) {
     return likeTarif;
 }
 
+/** Système de trie **/
+function trier(choixTrier) {
+    switch(choixTrier.value) {
+        case "Popularité":
+            break;
+        case "Date":
+            break;
+        case "Titre":
+            break;
+        default:
+            break;
+    }
+}
+
 /** Système de like **/
-function like(id) {
+function systemeLike(id, type) {
     /* Incrémente le like */
     let nbLike = document.getElementById("like-"+id).innerHTML;
     nbLike = parseInt(nbLike);
-    nbLike = nbLike + 1;
-    /* Change dans les éléments */
-    document.getElementById("like-"+id).innerHTML = nbLike;
     let nbLikeTotal = document.getElementById("profil-likes-photographe").innerHTML;
     nbLikeTotal = parseInt(nbLikeTotal);
-    nbLikeTotal = nbLikeTotal + 1;
-    document.getElementById("profil-likes-photographe").innerHTML = nbLikeTotal;
-    /* Change la fonction */
-    document.getElementsByClassName("like-"+id)[0].getElementsByClassName("like-coeur")[0].setAttribute("onclick", "unlike('"+id+"')");
-}
-
-function unlike(id) {
-    /* Décrémente le like */
-    let nbLike = document.getElementById("like-"+id).innerHTML;
-    nbLike = parseInt(nbLike);
-    nbLike = nbLike - 1;
+    if(type == "like") {
+        nbLike = nbLike + 1;
+        nbLikeTotal = nbLikeTotal + 1;
+        /* Change la fonction */
+        document.getElementsByClassName("like-"+id)[0].getElementsByClassName("like-coeur")[0].setAttribute("onclick", "systemeLike('"+id+"', 'unlike')");
+    } else {
+        nbLike = nbLike - 1;
+        nbLikeTotal = nbLikeTotal - 1;
+        /* Change la fonction */
+        document.getElementsByClassName("like-"+id)[0].getElementsByClassName("like-coeur")[0].setAttribute("onclick", "systemeLike('"+id+"', 'like')");
+    }
     /* Change dans les éléments */
     document.getElementById("like-"+id).innerHTML = nbLike;
-    let nbLikeTotal = document.getElementById("profil-likes-photographe").innerHTML;
-    nbLikeTotal = parseInt(nbLikeTotal);
-    nbLikeTotal = nbLikeTotal - 1;
     document.getElementById("profil-likes-photographe").innerHTML = nbLikeTotal;
-    /* Change la fonction */
-    document.getElementsByClassName("like-"+id)[0].getElementsByClassName("like-coeur")[0].setAttribute("onclick", "like('"+id+"')");
 }
 
 /** Lightbox **/
@@ -139,12 +145,14 @@ function ouvreLightbox(index, photo, titre) {
     document.getElementsByTagName("body")[0].style.overflow = "hidden";
     document.getElementById("lightbox").style.display = "block";
     let totalPhoto = document.querySelectorAll(".photo").length;
+    /* Gère la flèche gauche */
     if(index == 1) {
         document.getElementById("fleche-gauche").style.display = "none";
     } else {
         document.getElementById("fleche-gauche").style.display = "block";
     }
     document.getElementById("fleche-gauche").setAttribute("onclick", "flecheGauche("+(index-1)+")");
+    /* Gère la flèche droite */
     if(index == (totalPhoto - 2)) {
         document.getElementById("fleche-droite").style.display = "none";
     } else {
@@ -155,17 +163,19 @@ function ouvreLightbox(index, photo, titre) {
     document.getElementById("titre-photo-lightbox").innerHTML = titre;
 }
 
+/* Ferme la lightbox */
 function fermerLightbox() {
     document.getElementsByTagName("body")[0].style.overflow = "unset";
     document.getElementById("lightbox").style.display = "none";
 }
-
+/* Gère la flèche gauche */
 function flecheGauche(index) {
     let photoAvant = document.getElementsByClassName("photo")[index-1].getElementsByClassName("src-contenu")[0].getAttribute("src");
     let titreAvant = document.getElementsByClassName("photo")[index-1].getElementsByClassName("titre-photo")[0].innerHTML;
     ouvreLightbox(index, photoAvant, titreAvant);
 }
 
+/* Gère la flèche droite */
 function flecheDroite(index) {
     let totalPhoto = document.querySelectorAll(".photo").length;
     if(index < (totalPhoto - 1)) {
