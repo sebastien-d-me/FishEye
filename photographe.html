@@ -30,7 +30,10 @@
 
         <section id="profil-liste-photos"></section>
 
-        <section id="profil-likes-tarif"></section>
+        <section id="profil-likes-tarif">
+            <span id="profil-likes"></span>
+            <span id="profil-tarif"></span>
+        </section>
 
         <section id="lightbox">
             <div class="contenu-lightbox">
@@ -63,6 +66,22 @@
         </section>
     </main>
     
-    <script src="ressources/js/fishEyePhotographe.js"></script>
+    <!-- Api -->
+    <script src="ressources/js/api/Api.js"></script>
+    <!-- Factory -->
+    <script src="ressources/js/factory/PhotographesFactory.js"></script>
+    <script src="ressources/js/factory/ProfilPhotographeFactory.js"></script>
+    <script src="ressources/js/factory/PhotoFactory.js"></script>
+    <!-- Models -->
+    <script src="ressources/js/models/Photographe.js"></script>
+    <script src="ressources/js/models/Photo.js"></script>
+    <script src="ressources/js/models/Video.js"></script>
+    <!-- Templates -->
+    <script src="ressources/js/templates/PhotographeProfil.js"></script>
+    <script src="ressources/js/templates/PhotographePhoto.js"></script>
+    <script src="ressources/js/templates/PhotographeVideo.js"></script>
+    <script src="ressources/js/templates/PhotographeLike.js"></script>
+    <!-- Profil -->
+    <script src="ressources/js/Profil.js"></script>  
 </body>
 </html>
