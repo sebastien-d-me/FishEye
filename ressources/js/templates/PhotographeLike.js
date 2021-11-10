@@ -5,7 +5,7 @@ class PhotographeLike {
 
     createLikesProfil() {
         const createur = document.createElement('span');
-            var profilPhotographe = `
+            let profilPhotographe = `
                 <span id="profil-likes-photographe">${this.nbLikeTotal}</span> ♥</span>
             `;
             createur.innerHTML = profilPhotographe;

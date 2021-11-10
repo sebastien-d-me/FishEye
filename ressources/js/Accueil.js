@@ -15,11 +15,11 @@ class Accueil {
             }
         }
 
-        const photographesData = await this.photographesApi.getPhotographes();
-        const Photographe = photographesData.map(photographe => new PhotographesFactory(photographe));
+        let photographesData = await this.photographesApi.getPhotographes();
+        let Photographe = photographesData.map(photographe => new PhotographesFactory(photographe));
 
         Photographe.forEach(photographe => {
-            const CarteTemplate = new PhotographesCarte(photographe);
+            let CarteTemplate = new PhotographesCarte(photographe);
             this.listePhotographes.appendChild(
                 CarteTemplate.createPhotographeCarte()
             );
@@ -27,7 +27,7 @@ class Accueil {
     }
 }
 
-const accueil = new Accueil();
+let accueil = new Accueil();
 accueil.main()
 
 /** Système de filtres **/

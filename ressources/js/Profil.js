@@ -9,8 +9,8 @@ class Profil {
     }
 
     async main() {
-        var idURL = new URL(window.location.href).searchParams.get("id");
-        var nomPhotographe = "";
+        let idURL = new URL(window.location.href).searchParams.get("id");
+        let nomPhotographe = "";
         switch(idURL) {
             case "243":
                 nomPhotographe = "Mimi";
@@ -34,8 +34,8 @@ class Profil {
                 break;
         }
 
-        const photographesData = await this.photographesApi.getPhotographes();
-        const Photographe = photographesData.map(photographe => new ProfilPhotographeFactory(photographe, idURL));
+        let photographesData = await this.photographesApi.getPhotographes();
+        let Photographe = photographesData.map(photographe => new ProfilPhotographeFactory(photographe, idURL));
         Photographe.forEach(photographe => {
             const ProfilTemplate = new PhotographeProfil(photographe, idURL);
             this.profilPhotographe.append(
@@ -48,30 +48,30 @@ class Profil {
             }
         });
 
-        const photosData = await this.photographesApi.getPhotos();
-        const Photo = photosData.map(photo => new PhotoFactory(photo, idURL));
+        let photosData = await this.photographesApi.getPhotos();
+        let Photo = photosData.map(photo => new PhotoFactory(photo, idURL));
         Photo.forEach(photo => {
             if("image" in photo) {
-                const PhotoTemplate = new PhotographePhoto(photo, idURL, nomPhotographe);
+                let PhotoTemplate = new PhotographePhoto(photo, idURL, nomPhotographe);
                 this.profilListePhotos.append(
                     PhotoTemplate.createPhotographeGallerie()
                 );
             } else {
-                const PhotoTemplate = new PhotographeVideo(photo, idURL, nomPhotographe);
+                let PhotoTemplate = new PhotographeVideo(photo, idURL, nomPhotographe);
                 this.profilListePhotos.append(
                     PhotoTemplate.createPhotographeGallerie()
                 );
             }
         });
 
-        const Likes = await this.photographesApi.getLikes();
-        var nbLikeTotal = 0;
+        let Likes = await this.photographesApi.getLikes();
+        let nbLikeTotal = 0;
         Likes.forEach(like => {
             if(like.photographerId == idURL) {
                 nbLikeTotal = nbLikeTotal + like.likes;
             }
         });
-        const LikeTemplate = new PhotographeLike(nbLikeTotal);
+        let LikeTemplate = new PhotographeLike(nbLikeTotal);
         this.profilLikes.append(
             LikeTemplate.createLikesProfil()
         );
@@ -80,6 +80,7 @@ class Profil {
 
 const profil = new Profil();
 profil.main()
+
 
 /** Système de contact **/
 function contact(nom) {
@@ -92,15 +93,16 @@ function fermerContact() {
 }
 /* Valide le formulaire */
 function validerContact() {
-    var nom = document.getElementById("form-nom").value;
-    var prenom = document.getElementById("form-prenom").value;
-    var email = document.getElementById("form-email").value;
-    var message = document.getElementById("form-message").value;
+    let nom = document.getElementById("form-nom").value;
+    let prenom = document.getElementById("form-prenom").value;
+    let email = document.getElementById("form-email").value;
+    let message = document.getElementById("form-message").value;
 
     console.log("NOM : "+nom+" PRENOM : "+prenom);
     console.log("ADRESSE EMAIL : "+email);
     console.log("MESSAGE : "+message);
 }
+
 
 /** Système de like **/
 function systemeLike(id, type) {
@@ -125,26 +127,51 @@ function systemeLike(id, type) {
     document.getElementById("profil-likes-photographe").innerHTML = nbLikeTotal;
 }
 
+
 /** Système de lightbox **/
-function ouvreLightbox(index, photo, titre) {
+function ouvreLightbox(index, titre) {
+    /* Obtient le nombre total de photos */
+    let totalPhoto = document.querySelectorAll(".photo").length;
+    /* Récupère la photo lié à l'index */
+    let photos = document.getElementById(index);
+    /* Obtient la source de l'image */
+    let photosSrc = photos.getElementsByClassName("src-contenu")[0].getAttribute("src");
+    /* Obtient le type de l'image */ 
+    let photoType = photosSrc.split('.').pop();
+    let photoFormat = "";
+    if(photoType === "jpg" || photoType === "jpeg" || photoType == "gif" || photoType === "png") {
+        photoFormat = "image";
+    } else if(photoType === "mp4" || photoType === "mkv" || photoType === "avi") {
+        photoFormat = "video";
+    }
+    /* Récupère l'id de la photo */
+    let idPhoto = index;
+    /* Affiche la lightbox */
     document.getElementsByTagName("body")[0].style.overflow = "hidden";
     document.getElementById("lightbox").style.display = "block";
-    let totalPhoto = document.querySelectorAll(".photo").length;
-    /* Gère la flèche gauche */
-    if(index == 1) {
+    /* Gère l'affichage des flèches */
+    if(idPhoto === 1) {
         document.getElementById("fleche-gauche").style.display = "none";
+            /* Change les index des flèches */
+            document.getElementById("fleche-gauche").setAttribute("onclick", "");
+    } else if(idPhoto === totalPhoto) {
+        document.getElementById("fleche-droite").style.display = "none";
+            /* Change les index des flèches */
+            document.getElementById("fleche-droite").setAttribute("onclick", "");
     } else {
         document.getElementById("fleche-gauche").style.display = "block";
-    }
-    document.getElementById("fleche-gauche").setAttribute("onclick", "flecheGauche("+(index-1)+")");
-    /* Gère la flèche droite */
-    if(index == (totalPhoto - 2)) {
-        document.getElementById("fleche-droite").style.display = "none";
-    } else {
         document.getElementById("fleche-droite").style.display = "block";
+            /* Change les index des flèches */
+            document.getElementById("fleche-gauche").setAttribute("onclick", "flecheGauche("+(idPhoto-1)+")");
+            document.getElementById("fleche-droite").setAttribute("onclick", "flecheDroite("+(idPhoto+1)+")");
     }
-    document.getElementById("fleche-droite").setAttribute("onclick", "flecheDroite("+(index+1)+")");
-    document.getElementById("photo-lightbox").setAttribute("src", photo);
+    /* Affiche la photo */
+    if(photoFormat === "image") {
+        document.getElementById("contenu-photo-lightbox").innerHTML = "<img id='photo-lightbox' src="+photosSrc+">";
+    } else {
+        document.getElementById("contenu-photo-lightbox").innerHTML = "<video id='photo-lightbox' controls><source src="+photosSrc+">";
+    }
+    /** Affiche le titre */
     document.getElementById("titre-photo-lightbox").innerHTML = titre;
 }
 /* Ferme la lightbox */
@@ -154,19 +181,22 @@ function fermerLightbox() {
 }
 /* Gère la flèche gauche */
 function flecheGauche(index) {
-    let photoAvant = document.getElementsByClassName("photo")[index-1].getElementsByClassName("src-contenu")[0].getAttribute("src");
-    let titreAvant = document.getElementsByClassName("photo")[index-1].getElementsByClassName("titre-photo")[0].innerHTML;
-    ouvreLightbox(index, photoAvant, titreAvant);
+    let titreAvant = document.getElementsByClassName("photo")[index].getElementsByClassName("titre-photo")[0].innerHTML;
+    ouvreLightbox(index, titreAvant);
 }
 /* Gère la flèche droite */
 function flecheDroite(index) {
     let totalPhoto = document.querySelectorAll(".photo").length;
-    if(index < (totalPhoto - 1)) {
-        let photoApres = document.getElementsByClassName("photo")[index+1].getElementsByClassName("src-contenu")[0].getAttribute("src");
-        let titreApres = document.getElementsByClassName("photo")[index+1].getElementsByClassName("titre-photo")[0].innerHTML;
-        ouvreLightbox(index, photoApres, titreApres);
+    if(index === (totalPhoto)) {
+        let titreApres = Array.from(document.querySelectorAll('.photo')).pop();
+        titreApres = titreApres.getElementsByClassName("titre-photo")[0].innerHTML;
+        ouvreLightbox(index, titreApres);
+    } else {
+        let titreApres = document.getElementsByClassName("photo")[index].getElementsByClassName("titre-photo")[0].innerHTML;
+        ouvreLightbox(index, titreApres);
     }
 }
+
 
 /** Système de trie **/
 function trier(choixTrier) {

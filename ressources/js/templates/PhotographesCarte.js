@@ -4,12 +4,12 @@ class PhotographesCarte {
     }
 
     createPhotographeCarte() {
-        const createur = document.createElement('article');
+        let createur = document.createElement('article');
         createur.classList.add("photographe");
 
         this.photographe.tags.forEach(tag => createur.classList.add(tag));
 
-        const profilPhotographe = `
+        let profilPhotographe = `
             <a class="lien-photographe" href="photographe.html?id=${this.photographe.id}" aria-label="${this.photographe.name}">
                 <img alt="" class="img-photographe" src="ressources/img/Photographers_ID_Photos/${this.photographe.portrait}">
                 <h2 class="nom-photographe">${this.photographe.name}</h2>

@@ -7,12 +7,13 @@ class PhotographeVideo {
 
     createPhotographeGallerie() {
         if(`${this.photo.photographerId}` == this.idPage) {
-            const photo = document.createElement('div');
+            let photo = document.createElement('div');
             photo.classList.add("photo");
-            photo.setAttribute("id", `${this.photo.id}`)
+            this.indexPhoto = document.querySelectorAll(".photo").length + 1;
+            photo.setAttribute("id", `${this.indexPhoto}`)
 
-            var cartePhoto = `
-                <a href="#" onclick="ouvreLightbox(${this.photo.indexPhoto}, 'ressources/img/${this.photo.nomPhotographe}/${this.photo.video}', '${this.photo.title}')">
+            let cartePhoto = `
+                <a href="#" class="lien-lightbox" onclick="ouvreLightbox(${this.indexPhoto}, '${this.photo.title}')">
                     <video controls class="img-photo">
                         <source class="src-contenu" src="ressources/img/${this.nomPhotographe}/${this.photo.video}" type="video/mp4">
                     </video>

@@ -6,8 +6,8 @@ class PhotographeProfil {
 
     createPhotographeProfil() {
         if(this.idPage == this.photographe.id) {
-            const createur = document.createElement('article');
-            var profilPhotographe = `
+            let createur = document.createElement('article');
+            let profilPhotographe = `
                 <img class="img-photographe" id="profil-photo-photographe" src="ressources/img/Photographers_ID_Photos/${this.photographe.portrait}">
                 <div id="profil-nom-contact-photographe">
                     <h1 class="nom-photographe">${this.photographe.name}</h1>

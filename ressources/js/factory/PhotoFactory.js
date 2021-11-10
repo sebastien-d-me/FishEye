@@ -1,6 +1,6 @@
 class PhotoFactory {
     constructor(photo, idURL) {
-        var nomPhotographe = "";
+        let nomPhotographe = "";
         switch(idURL) {
             case "243":
                 nomPhotographe = "Mimi";

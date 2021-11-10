@@ -7,14 +7,13 @@ class PhotographePhoto {
 
     createPhotographeGallerie() {
         if(`${this.photo.photographerId}` == this.idPage) {
-            const photo = document.createElement('div');
+            let photo = document.createElement('div');
             photo.classList.add("photo");
-            photo.setAttribute("id", `${this.photo.id}`)
+            this.indexPhoto = document.querySelectorAll(".photo").length + 1;
+            photo.setAttribute("id", `${this.indexPhoto}`)
 
-            var indexPhoto = document.querySelectorAll(".photo").length + 1;
-
-            var cartePhoto = `
-                <a href="#" onclick="ouvreLightbox(${indexPhoto}, 'ressources/img/${this.photo.nomPhotographe}/${this.photo.image}', '${this.photo.title}')">
+            let cartePhoto = `
+                <a href="#" class="lien-lightbox" onclick="ouvreLightbox(${this.indexPhoto}, '${this.photo.title}')">
                     <img class="img-photo src-contenu" src="ressources/img/${this.nomPhotographe}/${this.photo.image}">
                 </a>
                 <div>
