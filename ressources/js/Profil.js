@@ -84,11 +84,35 @@ profil.main()
 
 /** Système de contact **/
 function contact(nom) {
+    document.getElementsByTagName("body")[0].style.overflow = "hidden";
     document.getElementById("contact").style.display = "block";
     document.getElementById("nom-contact").innerHTML = nom;
+    /** Gére les flèches du clavier **/
+    const actionForm = document.querySelectorAll('.action-form');
+    actionForm.forEach(function(action, i) {
+        if(document.getElementById("contact").style.display === "block") {
+            action.addEventListener('keydown', function(events) {
+                switch (events.key) {
+                    case 'ArrowUp':
+                        if(i !== 0) {
+                            action.parentNode.getElementsByClassName('action-form')[i-1].focus()
+                        }
+                        break;
+                    case 'ArrowDown':
+                        if(i !== (actionForm.length - 1)) {
+                            action.parentNode.getElementsByClassName('action-form')[i+1].focus()
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            })
+        }
+    });
 }
 /* Fermer le formulaire */
 function fermerContact() {
+    document.getElementsByTagName("body")[0].style.overflow = "unset";
     document.getElementById("contact").style.display = "none";
 }
 /* Valide le formulaire */
@@ -180,7 +204,7 @@ function ouvreLightbox(index, titre) {
     /** Gére les flèches du clavier **/
     document.onkeydown = function (event) {
         /* Si la Lightbox est ouverte */
-        if(document.getElementById("lightbox").style.display = "block") {
+        if(document.getElementById("lightbox").style.display === "block") {
             switch (event.key) {
                 case 'ArrowLeft':
                     flecheGauche(idPhoto-1);
