@@ -177,6 +177,21 @@ function ouvreLightbox(index, titre) {
     }
     /** Affiche le titre */
     document.getElementById("titre-photo-lightbox").innerHTML = titre;
+    /** Gére les flèches du clavier **/
+    document.onkeydown = function (event) {
+        /* Si la Lightbox est ouverte */
+        if(document.getElementById("lightbox").style.display = "block") {
+            switch (event.key) {
+                case 'ArrowLeft':
+                    flecheGauche(idPhoto-1);
+                    break;
+                case 'ArrowRight':
+                    flecheDroite(idPhoto+1);
+                default:
+                    break;
+            }
+        }
+    };
 }
 /* Ferme la lightbox */
 function fermerLightbox() {
