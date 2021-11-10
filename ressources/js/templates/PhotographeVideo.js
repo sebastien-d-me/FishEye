@@ -10,7 +10,10 @@ class PhotographeVideo {
             let photo = document.createElement('div');
             photo.classList.add("photo");
             this.indexPhoto = document.querySelectorAll(".photo").length + 1;
-            photo.setAttribute("id", `${this.indexPhoto}`)
+            photo.setAttribute("id", `${this.indexPhoto}`);
+            photo.setAttribute("data-likes", `${this.photo.likes}`);
+            photo.setAttribute("data-date", `${this.photo.date}`);
+            photo.setAttribute("data-titre", `${this.photo.title}`);
 
             let cartePhoto = `
                 <a href="#" class="lien-lightbox" onclick="ouvreLightbox(${this.indexPhoto}, '${this.photo.title}')">

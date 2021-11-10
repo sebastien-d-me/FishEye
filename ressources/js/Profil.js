@@ -152,11 +152,15 @@ function ouvreLightbox(index, titre) {
     /* Gère l'affichage des flèches */
     if(idPhoto === 1) {
         document.getElementById("fleche-gauche").style.display = "none";
+        document.getElementById("fleche-droite").style.display = "block";
             /* Change les index des flèches */
             document.getElementById("fleche-gauche").setAttribute("onclick", "");
+            document.getElementById("fleche-droite").setAttribute("onclick", "flecheDroite("+(idPhoto+1)+")");
     } else if(idPhoto === totalPhoto) {
+        document.getElementById("fleche-gauche").style.display = "block";
         document.getElementById("fleche-droite").style.display = "none";
             /* Change les index des flèches */
+            document.getElementById("fleche-gauche").setAttribute("onclick", "flecheGauche("+(idPhoto-1)+")");
             document.getElementById("fleche-droite").setAttribute("onclick", "");
     } else {
         document.getElementById("fleche-gauche").style.display = "block";
