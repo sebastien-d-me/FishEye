@@ -19,7 +19,7 @@ class PhotographePhoto {
 
             let cartePhoto = `
                 <a href="#" class="lien-lightbox" aria-label="image closeup view" onclick="ouvreLightbox(${this.indexPhoto}, '${this.photo.title}')">
-                    <img alt="${this.photo.title}" class="img-photo src-contenu" src="ressources/img/${this.nomPhotographe}/${this.photo.image}">
+                    <img alt="${this.photo.description}" class="img-photo src-contenu" src="ressources/img/${this.nomPhotographe}/${this.photo.image}">
                 </a>
                 <div>
                     <span class="titre-photo">${this.photo.title}</span>

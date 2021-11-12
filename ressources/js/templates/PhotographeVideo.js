@@ -19,7 +19,7 @@ class PhotographeVideo {
 
             let cartePhoto = `
                 <a href="#" class="lien-lightbox" aria-label="image closeup view" onclick="ouvreLightbox(${this.indexPhoto}, '${this.photo.title}')">
-                    <video title="${this.photo.title}" controls class="img-photo">
+                    <video title="${this.photo.description}" controls class="img-photo">
                         <source class="src-contenu" src="ressources/img/${this.nomPhotographe}/${this.photo.video}" type="video/mp4">
                     </video>
                 </a>
