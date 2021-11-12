@@ -12,7 +12,9 @@
     <header>
         <picture class="partie-header">
             <source srcset="ressources/img/Logo-200.png" media="(max-width: 992px)">
-            <img alt="Fisheye Home page" class="logo" src="ressources/img/Logo.png">
+            <a href="index.html">
+                <img alt="Fisheye Accueil" class="logo" src="ressources/img/Logo.png">
+            </a>
         </picture>
     </header>
 
@@ -37,9 +39,9 @@
 
         <section id="lightbox">
             <div class="contenu-lightbox">
-                <span class="fermer" onclick="fermerLightbox()"></span>
-                <span class="fleche" id="fleche-gauche">&#8592;</span>
-                <span class="fleche" id="fleche-droite">&#8594;</span>
+                <span class="fermer" aria-label="Fermer la modal" onclick="fermerLightbox()"></span>
+                <span class="fleche" aria-label="Image précédente" id="fleche-gauche">&#8592;</span>
+                <span class="fleche" aria-label="Image suivante" id="fleche-droite">&#8594;</span>
                 <div class="photo-titre-lightbox">
                     <div id="contenu-photo-lightbox">
                         
@@ -55,14 +57,14 @@
                 <span class="fermer" id="fermer-contact" onclick="fermerContact()"></span>
                 <form method="get">
                     <label class="label-form">Prénom</label>
-                    <input class="champ-form action-form" id="form-prenom" type="text" required>
+                    <input title="Modifier le prénom" class="champ-form action-form" id="form-prenom" type="text" required>
                     <label class="label-form">Nom</label>
-                    <input class="champ-form action-form" id="form-nom" type="text" required>
+                    <input title="Modifier le nom" class="champ-form action-form" id="form-nom" type="text" required>
                     <label class="label-form">Email</label>
-                    <input class="champ-form action-form" id="form-email" type="text" required>
+                    <input title="Modifier l'email" class="champ-form action-form" id="form-email" type="text" required>
                     <label class="label-form">Votre message</label>
-                    <textarea class="champ-form action-form" id="form-message" required></textarea>
-                    <button class="btn-valider action-form" type="button" onclick="validerContact()">Envoyer</button>
+                    <textarea title="Modifier le message" class="champ-form action-form" id="form-message" required></textarea>
+                    <button title="Envoyer le message" class="btn-valider action-form" type="button" onclick="validerContact()">Envoyer</button>
                 </form>
             </div>
         </section>

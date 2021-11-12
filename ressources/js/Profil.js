@@ -209,9 +209,9 @@ function ouvreLightbox(index, titre) {
     }
     /* Affiche la photo */
     if(photoFormat === "image") {
-        document.getElementById("contenu-photo-lightbox").innerHTML = "<img id='photo-lightbox' src="+photosSrc+">";
+        document.getElementById("contenu-photo-lightbox").innerHTML = "<img alt='"+titre+"' id='photo-lightbox' src="+photosSrc+">";
     } else {
-        document.getElementById("contenu-photo-lightbox").innerHTML = "<video id='photo-lightbox' controls><source src="+photosSrc+">";
+        document.getElementById("contenu-photo-lightbox").innerHTML = "<video title='"+titre+"' id='photo-lightbox' controls><source src="+photosSrc+">";
     }
     /** Affiche le titre */
     document.getElementById("titre-photo-lightbox").innerHTML = titre;

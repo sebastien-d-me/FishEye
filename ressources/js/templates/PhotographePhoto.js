@@ -18,14 +18,14 @@ class PhotographePhoto {
             this.photo.tags.forEach(tag => photo.classList.add(tag));
 
             let cartePhoto = `
-                <a href="#" class="lien-lightbox" onclick="ouvreLightbox(${this.indexPhoto}, '${this.photo.title}')">
+                <a href="#" class="lien-lightbox" aria-label="image closeup view" onclick="ouvreLightbox(${this.indexPhoto}, '${this.photo.title}')">
                     <img alt="${this.photo.title}" class="img-photo src-contenu" src="ressources/img/${this.nomPhotographe}/${this.photo.image}">
                 </a>
                 <div>
                     <span class="titre-photo">${this.photo.title}</span>
                     <span class="like like-${this.photo.id}">
                         <span id="like-${this.photo.id}">${this.photo.likes}</span>
-                        <span class="like-coeur" onclick="systemeLike('${this.photo.id}', 'like')">♥</span>
+                        <span class="like-coeur" aria-label="likes" onclick="systemeLike('${this.photo.id}', 'like')">♥</span>
                     </span>
                 </div>
             `;

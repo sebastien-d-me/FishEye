@@ -11,7 +11,7 @@ class PhotographesCarte {
 
         let profilPhotographe = `
             <a class="lien-photographe" href="photographe.html?id=${this.photographe.id}" aria-label="${this.photographe.name}">
-                <img alt="" class="img-photographe" src="ressources/img/Photographers_ID_Photos/${this.photographe.portrait}">
+                <img alt="${this.photographe.name}" class="img-photographe" src="ressources/img/Photographers_ID_Photos/${this.photographe.portrait}">
                 <h2 class="nom-photographe">${this.photographe.name}</h2>
             </a>
             <span class="lieu-photographe">${this.photographe.city}, ${this.photographe.country}</span>
