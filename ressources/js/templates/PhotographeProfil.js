@@ -21,7 +21,7 @@ class PhotographeProfil {
                 </div>
                 <div class="liste-filtres-photographe">
                     ${this.photographe.tags.map(tag =>
-                        `<a class="lien-filtre" href="#" aria-label="${tag}"><span aria-hidden="true">#${tag}</span></a>`
+                        `<a class="lien-filtre" href="#" aria-label="${tag}" onclick="filtres('${tag}')"><span aria-hidden="true">#${tag}</span></a>`
                     ).join(" ")}
                 </div>
             `;

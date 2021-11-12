@@ -15,6 +15,8 @@ class PhotographeVideo {
             photo.setAttribute("data-date", `${this.photo.date}`);
             photo.setAttribute("data-titre", `${this.photo.title}`);
 
+            this.photo.tags.forEach(tag => photo.classList.add(tag));
+
             let cartePhoto = `
                 <a href="#" class="lien-lightbox" onclick="ouvreLightbox(${this.indexPhoto}, '${this.photo.title}')">
                     <video controls class="img-photo">

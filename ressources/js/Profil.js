@@ -128,6 +128,20 @@ function validerContact() {
 }
 
 
+/** Système de filtres **/
+function filtres(type) {
+    let photographie = document.querySelectorAll(".photo");
+    photographie.forEach(function(photographie) {
+        photographie.style.display = "none";
+    });
+    let filtrePhotographie = document.querySelectorAll("."+type);
+    filtrePhotographie.forEach(function(filtrePhotographie) {
+        filtrePhotographie.style.display = "block";
+    });
+}
+
+
+
 /** Système de like **/
 function systemeLike(id, type) {
     /* Incrémente le like */
