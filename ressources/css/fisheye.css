@@ -186,8 +186,8 @@ nav {
 #profil-liste-photos {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px 50px;
-  margin: 0 100px;
+  gap: 10px 30px;
+  margin: 0 100px 50px 100px;
 }
 #aucun-contenu {
   display: none;
@@ -198,7 +198,7 @@ nav {
 .img-photo {
   border-radius: 5px;
   display: block;
-  height: 350px;
+  height: 400px;
   margin: auto;
   object-fit: cover;
   width: 100%;
@@ -212,11 +212,11 @@ nav {
   float: right;
   font-size: 24px;
 }
-.like-coeur {
-  color: var(--primaire);
-  font-size: 30px;
+.like-coeur::after {
+  content: "\2764";
 }
 .like-coeur:hover {
+  color: var(--primaire-alternatif);
   cursor: pointer;
 }
 #profil-likes-tarif {
