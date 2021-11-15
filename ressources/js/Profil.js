@@ -138,8 +138,17 @@ function filtres(type) {
     filtrePhotographie.forEach(function(filtrePhotographie) {
         filtrePhotographie.style.display = "block";
     });
+    let listePhotos = [].slice.call(filtrePhotographie);
+    let listePhotosAffiche = listePhotos.filter(function(photo) {
+        return getComputedStyle(photo).display !== "none"
+    });
+    let nombrePhotos = listePhotosAffiche.length;
+    if(nombrePhotos == 0) {
+        document.getElementById("aucun-contenu").style.display = "block";
+    } else {
+        document.getElementById("aucun-contenu").style.display = "none";
+    }
 }
-
 
 
 /** Système de like **/

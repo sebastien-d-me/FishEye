@@ -189,6 +189,9 @@ nav {
   gap: 20px 50px;
   margin: 0 100px;
 }
+#aucun-contenu {
+  display: none;
+}
 .photo {
   flex: 1 0 30%;
 }
@@ -386,14 +389,20 @@ textarea.champ-form {
   #profil-infos-photographe {
     background-color: unset;
     margin: unset;
-    padding: 25px;
+    padding: 0 25px 25px 25px;
+    text-align: center;
   }
   .nom-photographe {
     font-size: 25px;
   }
   #profil-photo-photographe {
+    display: block;
     height: 125px;
-    right: 25px;
+    left: unset;
+    margin: auto;
+    position: unset;
+    right: unset;
+    transform: unset;
     width: 125px;
   }
   .btn-contact {
@@ -431,6 +440,9 @@ textarea.champ-form {
   }
   #profil-likes-tarif {
     display: none;
+  }
+  #contact {
+    width: calc(100% - 100 px);
   }
 }
 
