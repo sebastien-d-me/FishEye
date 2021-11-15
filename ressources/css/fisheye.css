@@ -169,6 +169,9 @@ nav {
 #trier {
   margin: 25px 100px;
 }
+.trier-texte {
+  font-weight: bold;
+}
 #trier > select {
   background-color: var(--primaire);
   border: none;
