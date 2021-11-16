@@ -326,6 +326,12 @@ textarea.champ-form {
 #fleche-droite {
   right: 100px;
 }
+#fleche-gauche::after {
+  content: "\2190";
+}
+#fleche-droite::after {
+  content: "\2192";
+}
 .photo-titre-lightbox {
   margin: auto;
   width: fit-content;
@@ -384,14 +390,8 @@ textarea.champ-form {
   #fleche-gauche {
     left: 0;
   }
-  #fleche-gauche::after {
-    content: "\2190";
-  }
   #fleche-droite {
     right: 0;
-  }
-  #fleche-droite::after {
-    content: "\2192";
   }
   #titre-photo-lightbox {
     text-align: center;
