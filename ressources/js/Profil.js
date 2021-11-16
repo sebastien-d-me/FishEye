@@ -182,6 +182,7 @@ function systemeLike(id, type) {
 
 /** Système de lightbox **/
 function ouvreLightbox(index, titre) {
+    document.getElementsByClassName("btn-contact")[0].style.display = "none";
     /* Obtient le nombre total de photos */
     let totalPhoto = document.querySelectorAll(".photo").length;
     /* Récupère la photo lié à l'index */
@@ -249,6 +250,7 @@ function ouvreLightbox(index, titre) {
 function fermerLightbox() {
     document.getElementsByTagName("body")[0].style.overflow = "unset";
     document.getElementById("lightbox").style.display = "none";
+    document.getElementsByClassName("btn-contact")[0].style.display = "block";
 }
 /* Gère la flèche gauche */
 function flecheGauche(index) {

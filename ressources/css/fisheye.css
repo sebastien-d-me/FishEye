@@ -20,6 +20,20 @@ body {
 * {
   font-family: "DM Sans", sans-serif;
 }
+.fermer {
+  color: var(--primaire);
+  cursor: pointer;
+  font-size: 100px;
+  position: absolute;
+  right: 100px;
+  top: 0;
+}
+.fermer:hover {
+  color: var(--secondaire);
+}
+.fermer::after {
+  content: "\00d7";
+}
 
 /** Header **/
 header {
@@ -297,20 +311,6 @@ textarea.champ-form {
   margin: 50px 10%;
   width: 80%;
 }
-.fermer {
-  color: var(--primaire);
-  cursor: pointer;
-  font-size: 100px;
-  position: absolute;
-  right: 100px;
-  top: 0;
-}
-.fermer:hover {
-  color: var(--secondaire);
-}
-.fermer::after {
-  content: "\00d7";
-}
 .fleche {
   color: var(--primaire);
   cursor: pointer;
@@ -451,6 +451,33 @@ textarea.champ-form {
     top: calc(30% - 20px);
     transform: translateX(-50%);
     width: calc(100% - 100px);
+  }
+  .fermer-lightbox {
+    left: 50%;
+    right: unset;
+    transform: translateX(-50%);
+  }
+  .contenu-lightbox {
+    margin: auto;
+    width: 100%;
+  }
+  #photo-lightbox,
+  #video-lightbox {
+    max-height: 400px;
+    max-width: 100%;
+  }
+  .fleche {
+    font-size: 100px;
+    top: 0;
+  }
+  #fleche-gauche {
+    left: 0;
+  }
+  #fleche-droite {
+    right: 0;
+  }
+  #titre-photo-lightbox {
+    text-align: center;
   }
 }
 
