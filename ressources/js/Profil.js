@@ -254,7 +254,7 @@ function fermerLightbox() {
 }
 /* Gère la flèche gauche */
 function flecheGauche(index) {
-    let titreAvant = document.getElementsByClassName("photo")[index].getElementsByClassName("titre-photo")[0].innerHTML;
+    let titreAvant = document.getElementsByClassName("photo")[index-1].getElementsByClassName("titre-photo")[0].innerHTML;
     ouvreLightbox(index, titreAvant);
 }
 /* Gère la flèche droite */
@@ -265,7 +265,8 @@ function flecheDroite(index) {
         titreApres = titreApres.getElementsByClassName("titre-photo")[0].innerHTML;
         ouvreLightbox(index, titreApres);
     } else {
-        let titreApres = document.getElementsByClassName("photo")[index].getElementsByClassName("titre-photo")[0].innerHTML;
+        let titreApres = document.getElementsByClassName("photo")[index-1].getElementsByClassName("titre-photo")[0].innerHTML;
+        console.log(titreApres)
         ouvreLightbox(index, titreApres);
     }
 }
