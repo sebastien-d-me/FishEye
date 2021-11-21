@@ -266,7 +266,6 @@ function flecheDroite(index) {
         ouvreLightbox(index, titreApres);
     } else {
         let titreApres = document.getElementsByClassName("photo")[index-1].getElementsByClassName("titre-photo")[0].innerHTML;
-        console.log(titreApres)
         ouvreLightbox(index, titreApres);
     }
 }
@@ -282,7 +281,6 @@ function trier(choixTrier) {
     switch (choixTrier.value) {
         case "Popularité":
             tableauTrier.sort(function (a, b) {
-                console.log(a.dataset.likes - b.dataset.likes)
                 return a.dataset.likes - b.dataset.likes;
             });
             break;
