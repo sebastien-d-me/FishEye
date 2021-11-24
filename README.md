@@ -25,5 +25,5 @@ Ce projet est le n°6 du parcours [Développeur d'application - JavaScript React
 - Gérer les évènements d'un site avec JavaScript
 
 ### Informations complémentaires
-- Soutenance à faire le 23/11/2021.
+- Soutenance validé le 23/11/2021.
 - Lien vers le site : [Cliquez-ici](https://sebastien-d-me.github.io/SebastienDelahaye_6_05102021/ "Cliquez-ici").
