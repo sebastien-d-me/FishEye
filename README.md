@@ -2,7 +2,7 @@
 ## Projet 6 - FishEye
 ------------
 ### Description du projet
-Ce projet est le n°6 du parcours [Développeur d'application - JavaScript React](https://openclassrooms.com/fr/paths/516-developpeur-dapplication-javascript-react "Développeur d'application - JavaScript React") qui consiste à créer une landing page en HTML/CSS et JS.
+Ce projet est le n°6 du parcours [Développeur d'application - JavaScript React](https://openclassrooms.com/fr/paths/516-developpeur-dapplication-javascript-react "Développeur d'application - JavaScript React") qui consiste à créer un site accessible avec des données à récupérer en JSON.
 ### Cahiers des charges
 ##### Spécifications fonctionnelles
 1. Page d'accueil listant les photographes (et leurs informations) ainsi qu'une barre de tags.
