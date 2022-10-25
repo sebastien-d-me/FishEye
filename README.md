@@ -26,4 +26,4 @@ Ce projet est le n°6 du parcours [**Développeur Front-End**](https://openclass
 
 ### Informations complémentaires
 - Soutenance validé le 23/11/2021.
-- Lien vers le site : [Cliquez-ici](https://sebastien-d-me.github.io/SebastienDelahaye_6_05102021/ "Cliquez-ici").
+- Lien vers le site : [Cliquez-ici](https://sebastien-d-me.github.io/FishEye/ "Cliquez-ici").
