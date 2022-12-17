@@ -1,3 +1,5 @@
+<meta property="og:image" content="https://raw.githubusercontent.com/sebastien-d-me/FishEye/main/ressources/img/Logo.png">
+
 # Formation Développeur Front-End
 ## Projet 6 - FishEye
 ------------
